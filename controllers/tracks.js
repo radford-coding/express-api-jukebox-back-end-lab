@@ -1,10 +1,19 @@
 const Track = require('../models/track.js');
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const router = express.Router();
+
+const baseTrackURI = 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo';
 
 // POST /tracks
 router.post('/', async (req, res) => {
     try {
+        const apiRequest = `${baseTrackURI}&api_key=${process.env.API_KEY}&artist=${req.body.artist}&track=${req.body.title}&format=json`;
+        const temp = await fetch(apiRequest)
+            .then(res => res.json())
+            .then(data => console.log(data.track.name));
+        console.log(temp.body);
         const createdTrack = await Track.create(req.body);
         res.status(201).json(createdTrack);
     } catch (error) {

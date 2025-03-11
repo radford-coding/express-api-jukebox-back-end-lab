@@ -9,6 +9,12 @@ const trackSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    coverArtUrl: {
+        type: String,
+    },
+    soundClipUrl: {
+        type: String,
+    },
 });
 
 const Track = mongoose.model('Track', trackSchema);
