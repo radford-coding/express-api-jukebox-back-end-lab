@@ -8,7 +8,7 @@ const cors = require('cors');
 const methodOverride = require('method-override');
 
 const port = process.env.PORT ? process.env.PORT : '3000';
-const trackRouter = require('./controllers/trackss.js');
+const trackRouter = require('./controllers/tracks.js');
 
 mongoose.connect(process.env.MONGODB_URI);
 
@@ -21,7 +21,7 @@ app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(cors({ origin: /http:\/\/localhost:\d+$/ }));
 
-app.use('/pets', trackRouter);
+app.use('/tracks', trackRouter);
 
 
 
