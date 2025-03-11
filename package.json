@@ -1,0 +1,29 @@
+{
+  "name": "express-api-jukebox-back-end-lab",
+  "version": "1.0.0",
+  "description": "Reactville’s community center is launching a public jukebox, and they need your expertise to build the backend API that powers it! This jukebox will allow residents to freely add, update, and delete music tracks from a shared community playlist.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/radford-coding/express-api-jukebox-back-end-lab.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/radford-coding/express-api-jukebox-back-end-lab/issues"
+  },
+  "homepage": "https://github.com/radford-coding/express-api-jukebox-back-end-lab#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.12.1",
+    "morgan": "^1.10.0"
+  }
+}
