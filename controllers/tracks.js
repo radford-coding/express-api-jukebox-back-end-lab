@@ -43,12 +43,34 @@ router.get('/:trackId', async (req, res) => {
 // PUT /tracks/:trackId
 router.put('/:trackId', async (req, res) => {
     // res.json({res: `this is the put route for ${req.params.trackId}`});
-
+    try {
+        const updatedTrack = await Track.findByIdAndUpdate(req.params.trackId, req.body, { new: true });
+        if (!updatedTrack) {
+            res.status(404);
+            throw new Error('Track not found.');
+        };
+        res.status(200).json(updatedTrack);
+    } catch (error) {
+        if (res.statusCode === 404) {
+            res.json({ err: error.message });
+        } else {
+            res.status(500).json({ err: error.message });
+        };
+    }
 });
 
 // DELETE /tracks/:trackId
 router.delete('/:trackId', async (req, res) => {
-    res.json({res: `this is the delete route for ${req.params.trackId}`});
+    // res.json({res: `this is the delete route for ${req.params.trackId}`});
+    try {
+
+    } catch (error) {
+        if (res.statusCode === 404) {
+            res.json({ err: error.message });
+        } else {
+            res.status(500).json({ err: error.message });
+        };
+    }
 });
 
 module.exports = router;
