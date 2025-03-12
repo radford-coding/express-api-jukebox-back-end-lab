@@ -9,11 +9,12 @@ const baseTrackURI = 'https://ws.audioscrobbler.com/2.0/?method=track.getInfo';
 // POST /tracks
 router.post('/', async (req, res) => {
     try {
-        const apiRequest = `${baseTrackURI}&api_key=${process.env.API_KEY}&artist=${req.body.artist}&track=${req.body.title}&format=json`;
-        const temp = await fetch(apiRequest)
-            .then(res => res.json())
-            .then(data => console.log(data.track.name));
-        console.log(temp.body);
+        const apiTrackRequest = `${baseTrackURI}&api_key=${process.env.API_KEY}&artist=${req.body.artist}&track=${req.body.title}&autocorrect=1&format=json`;
+
+        const trackResult = await fetch(apiTrackRequest).then(res => res.json());
+        req.body.soundClipUrl = trackResult.track.url;
+        req.body.coverArtUrl = trackResult.track.album.image[3]['#text']; // could be better, maybe a Array.find(), but I am tired and unsure of the data structures from this API. At least it kinda works.
+        
         const createdTrack = await Track.create(req.body);
         res.status(201).json(createdTrack);
     } catch (error) {
